@@ -1,2 +1,2 @@
 # Advent-of-code
-excersices of advent of code 
+exercises of advent of code 
