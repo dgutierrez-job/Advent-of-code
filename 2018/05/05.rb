@@ -7,9 +7,7 @@ while reaction
 
   l = polymer.length
 
-  if polymer[i].upcase == polymer[i + 1] || polymer[i] == polymer[i + 1].upcase
-    # polymer.delete_at(i + 1)
-    # polymer.delete_at(i)
+  if polymer[i].match?(/[a-z]/) && polymer[i + 1].match?(/[A-Z]/) && polymer[i].upcase == polymer[i + 1] || polymer[i].match?(/[A-Z]/) && polymer[i + 1].match?(/[a-z]/) && polymer[i].downcase == polymer[i + 1]
     polymer = polymer.gsub(polymer[i] + polymer[i + 1], '')
     i = 0
   else
@@ -20,5 +18,4 @@ while reaction
 
 end
 
-puts polymer
 puts(polymer.length)
