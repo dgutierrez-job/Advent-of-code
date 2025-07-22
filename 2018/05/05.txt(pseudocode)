@@ -7,9 +7,7 @@ i<- 0
 while reaction == true do 
   l <- polymer.length
 
-  if (polymer[i] is lowcase and polymer[i+1] is upcase and polymer[i].upcase ==
-    polymer[i+1]) or (polymer[i] is upcase and polymer [i+1] is lowcase and
-    polymer[i].lowcase == polymer[i+1] )
+  if (polymer[i] != polymer[i+1] and polymer[i].upcase == polymer[i+1].upcase)
 
     polymer <- polymer.substitute(polymer[i]+polymer[i+1] for "")
     i <- 0
