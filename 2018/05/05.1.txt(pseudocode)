@@ -1,0 +1,44 @@
+total_units <- []
+
+for each letter in ('a'..'z') do
+
+  polarity <- letter 
+
+  polymer <- file.read('input.txt')
+
+  polymer <- polymer.substitute((polarity and polarity.upcase) for "")
+
+  reaction <- true
+
+  i<- 0
+
+  while reaction == true do 
+
+    l <- polymer.length
+
+    if (polymer[i] is lowcase and polymer[i+1] is upcase and polymer[i].upcase ==
+      polymer[i+1]) or (polymer[i] is upcase and polymer [i+1] is lowcase and
+      polymer[i].lowcase == polymer[i+1] )
+
+      polymer <- polymer.substitute(polymer[i]+polymer[i+1] for "")
+      i <- 0
+
+    else
+      i<- i+1
+    end if 
+    
+    if i+1 >= 1
+
+    reaction <- false
+
+    end if 
+
+  end while
+
+  total_units.push(polymer.length)
+
+end for
+
+return total_units.minimum 
+
+
