@@ -1,0 +1,44 @@
+document <- file_read('input.txt')
+
+locations <- []
+
+for each_line of document do 
+  location <- split(line) 
+  location <- map(location)
+  push location into locations 
+end for 
+
+k <- length(locations)
+
+support_array <- new_array(k)
+
+for i from 0 to k do 
+  support_array[i] <- []
+end for 
+
+container <- support_array 
+
+for number_1 from 0 to 354 do 
+  
+  for number_2 from 0 to 354 do
+    
+    ditances <- []  
+    
+    for each location in locations do  
+      push (abs(location[0]-number_1) + abs(location[1]-number_2)) into distances
+    end for
+
+    min_distance <- min(distances)
+
+    if length(distances) == 1
+      index <- find_index from min_distance in distances
+      push min_distance into container[index]
+    end if
+
+  end for
+
+end for
+
+for each location in locations do 
+  print(length(location))
+end for 

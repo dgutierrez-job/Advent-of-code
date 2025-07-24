@@ -1,0 +1,31 @@
+document <- file_read('input.txt')
+
+locations <- []
+
+for each_line of document do 
+  location <- split(line) 
+  location <- map(location)
+  push location into locations 
+end for 
+
+dessired_region <- []
+
+for number_1 from 0 to 354 do 
+  
+  for number_2 from 0 to 354 do
+    
+    ditances <- []  
+    
+    for each location in locations do  
+      push (abs(location[0]-number_1) + abs(location[1]-number_2)) into distances
+    end for
+
+    if sum(distances)<10000
+      push [number_1, number_2] into dessired_region 
+    end if 
+
+  end for
+
+end for
+
+print length(dessired_region)

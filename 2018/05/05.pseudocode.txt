@@ -1,0 +1,33 @@
+polymer <- read_file('input.txt')
+
+reaction <- true
+
+i<- 0
+
+while reaction == true do 
+  l <- length(polymer)
+
+  if (polymer[i] != polymer[i+1] and upcase(polymer[i]) == upcase(polymer[i+1]))
+
+    for each pair of chars in polymer
+          
+      (polymer[i]+polymer[i+1] for "")
+    end for
+
+    i <- 0
+
+  else
+
+    i<- i+1
+
+  end if 
+  
+  if i+1 >= 1
+
+    reaction <- false
+
+  end if 
+
+end while
+
+print length(polymer)
