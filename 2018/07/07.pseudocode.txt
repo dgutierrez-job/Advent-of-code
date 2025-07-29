@@ -1,0 +1,36 @@
+document <- file_read('input.txt')
+
+steps <- []
+dessired_order <- []
+
+for each_line in document do 
+  pairs <- gsub(line)
+  push pairs into steps
+end 
+
+to_finish <- new_set
+to_begin <- new_set
+
+for each_step in steps do
+  include step[0] in to_finish
+  include step[1] in to_begin
+end
+
+l = (to_finish | to_begin).length
+
+initializers <- to_array(to_finish-to_begin)
+
+while length(dessired_order) < l do
+  initializers <- sort(initializers)
+  push initializers[0] into dessired_order 
+  finish_process <- initializers.shift
+
+  candidates_to_finish <- find_all pairs in steps where pair[0] == finish_process 
+
+  for each_candidate in candidates_to_finish do 
+    conditions <- find_all pairs in steps where pair[1] == candidate [1]
+    push candidates[1] into initializers if conditions == dessired_order
+  end
+end
+
+

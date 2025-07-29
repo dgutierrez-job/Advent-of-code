@@ -1,0 +1,85 @@
+document <- file_read('input.txt')
+
+steps <- []
+dessired_order <- []
+
+for each_line in document do 
+  pairs <- gsub(line)
+  push pairs into steps
+end for
+
+to_finish <- new_set
+to_begin <- new_set
+
+for each_step in steps do
+  include step[0] in to_finish
+  include step[1] in to_begin
+end for
+
+values <- to_array("A".."Z")
+
+l = (to_finish | to_begin).length
+
+init <- to_array(to_finish-to_begin)
+
+init <- sort(init)
+
+initializers <- []
+
+i <- 0
+
+for each_process in init do 
+  push [process, 60 + (find_index of process in values)+1, i ] into initializers
+  i <- i+1
+end for
+
+push [nil, 0, 5] into initializers
+
+finish_process <- []
+
+
+while length(finish_process) < l do
+  next_process <- []
+
+  times <- []
+
+  for each_process in initializers do
+    push process[1] into times unless nil_process[0]
+  end for
+
+  dessired_process_index <- find_index of process in values where process[1] == min(time)
+  push initializers[dessired_process_index][0] into finish_process
+  candidates_to_finish <- find_all pairs in steps where pair[0] == last(finish_process) 
+
+  for each_candidate in candidates_to_finish do 
+    conditions <- find_all pairs in steps where pair[1] == candidate [1]
+    push candidates[1] into next_process if conditions == dessired_order
+  end for
+
+  if next_process is empty
+    initializers[dessired_process_index][0] <- nil
+  else
+    next_process <- sort(next_process)
+    process_to_start <- shift(next_process)
+    support_time <- initializers[dessired_process_index][1]
+    time  <- support_time + 60 + (find_index of process_to_start in values) +1
+    worker <- initializers[dessired_process_index][2]
+    initializers[dessired_process_index] <- [process_to_start, time, worker]
+
+    for each_process in initializers do
+      if nil(process[0]) && !empty(next_process)
+        process_to_start <- shift(next_process)
+        new_index <- find_index of process_to_start in initializers
+        time  <- support_time + 60 + (find_index of process_to_start in values)+1
+        worker <- initializers[dessired_process_index][2]
+        initializers[dessired_process_index] <- [process_to_start, time, worker]
+      end if
+
+    end for
+
+
+  end if
+
+end while
+
+print(initializers)
